@@ -1,12 +1,7 @@
 state("Schedule I")
 {
     // 0x0376E808, 0xB8, 0x18   Player
-    // 0x0389ECD8, 0XB8, 0X0    TimeManager
-    // 0x0376E8D8, 0xB8, 0x10   PlayerCamera
-
     bool	introComplete	    : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x280;  // Tracks if in prologue
-    bool    cameraControl       : "GameAssembly.dll", 0x0376E8D8, 0xB8, 0x10, 0xB8; // Whether player can control camera
-    float   IGT                 : "GameAssembly.dll", 0x0389ECD8, 0xB8, 0x0, 0x140; // In game time
     ulong	currentVehicle	    : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x208;  // Pointer towards vehicle player is currently in. 0 if not in a vehicle.
     bool	sleeping	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x258;  // Player sleeping
 
@@ -27,7 +22,13 @@ state("Schedule I")
     ulong  	inventory8	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x58, 0x10, 0x18, 0x14;
 	ulong  	inventory8container	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x58, 0x10, 0x40, 0x14;
 
-	float	money	            : "GameAssembly.dll", 0x0374AA60, 0x20, 0x98, 0x18, 0x2A0, 0x60, 0x10, 0x38; // Paper money
+	float	money	            : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x60, 0x10, 0x38; // Paper money
+
+    // 0x0389ECD8, 0XB8, 0X0    TimeManager
+    float   IGT                 : "GameAssembly.dll", 0x0389ECD8, 0xB8, 0x0, 0x140; // In game time
+
+    // 0x0376E8D8, 0xB8, 0x10   PlayerCamera
+    bool    cameraControl       : "GameAssembly.dll", 0x0376E8D8, 0xB8, 0x10, 0xB8; // Whether player can control camera
 }
 
 startup
@@ -64,6 +65,12 @@ onReset
 	vars.shouldStart = false;
 }
 
+// Not currently used, as runs are timed using real time, but might as well add it
+gameTime
+{
+    return TimeSpan.FromSeconds(current.IGT);
+}
+
 split
 {
 	if (current.money > 0.5 && !vars.completedSplits.Contains("money") && settings["cashmoney"])
@@ -78,7 +85,6 @@ split
 		return true;
 	}
 	
-	//if ( ( ( current.inventory1 == 0x75006B0067006F && current.inventory1container == 0x67006700610062 ) || ( current.inventory2 == 0x75006B0067006F && current.inventory2container == 0x67006700610062 ) ) && !vars.completedSplits.Contains("baggie")  && settings["baggie"] )
     if ( ( ( current.inventory1 == 0x75006B0067006F && current.inventory1container == 0x67006700610062 )
         || ( current.inventory2 == 0x75006B0067006F && current.inventory2container == 0x67006700610062 )
         || ( current.inventory3 == 0x75006B0067006F && current.inventory3container == 0x67006700610062 )
@@ -102,6 +108,7 @@ split
         || current.inventory6 == 0x75006500730070
         || current.inventory7 == 0x75006500730070
         || current.inventory8 == 0x75006500730070)
+        && !current.introComplete
         && !vars.completedSplits.Contains("pseudo")
         && settings["pseudo"])
 	{
@@ -109,9 +116,15 @@ split
 		return true;
     }
 
-    if (current.currentVehicle != 0  && settings["vehicle"])
+    if (current.currentVehicle != 0  && !vars.completedSplits.Contains("vehicle") && settings["vehicle"])
     {
         vars.completedSplits.Add("vehicle");
+        return true;
+    }
+
+    if (current.sleeping && !current.introComplete && !vars.completedSplits.Contains("sleep") && settings["sleep"])
+    {
+        vars.completedSplits.Add("sleep");
         return true;
     }
 }
