@@ -40,7 +40,6 @@ startup
 	settings.Add("speedgrow", true, "Split on receiving speed grow");
 	settings.Add("baggie", true, "Split on receiving og kush baggie");
     settings.Add("vehicle", true, "Split on first entering a vehicle");
-
     settings.Add("pseudo", true, "Split on receiving pseudo during prologue");
     settings.Add("sleep", true, "Split on first sleep during prologue");
 }
@@ -49,10 +48,11 @@ start
 {
 	if ( vars.shouldStart && (current.introComplete == true || current.cameraControl == true) )
 	{
+        vars.shouldStart = false;
 		return true;
 	}
 
-    if (current.IGT > 5 && current.IGT < 6) // Prologue IGT starts at ~5 for some reason
+    if (current.IGT > 10 && current.IGT < 11) // These times should be before both modes give control to the player
 	{
 		vars.shouldStart = true;
 	}
@@ -116,7 +116,7 @@ split
 		return true;
     }
 
-    if (current.currentVehicle != 0  && !vars.completedSplits.Contains("vehicle") && settings["vehicle"])
+    if (current.currentVehicle != 0 && !vars.completedSplits.Contains("vehicle") && settings["vehicle"])
     {
         vars.completedSplits.Add("vehicle");
         return true;
