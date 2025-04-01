@@ -15,6 +15,8 @@ Double click on the *Scriptable Auto Splitter* element in the selection box to o
 
 A box labelled *Advanced* should appear. This contains options for all autosplits, which are off by default. Tick which options you want to automatically split on.
 
+Make sure your **Compare Against** setting is set to **Real Time** not Game Time.
+
 ## Current autosplits
 - Split on bed during prologue
   - This is the final split for any prologue run.
