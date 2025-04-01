@@ -1,39 +1,42 @@
 state("Schedule I")
 {
-    // Player                   0x0376E808, 0xB8, 0x18
-    bool	introComplete	    : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x280;  // Tracks if in prologue
-    ulong	currentVehicle	    : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x208;  // Pointer towards vehicle player is currently in. 0 if not in a vehicle.
-    ulong	currentProperty	    : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x268;  // Pointer towards property player is currently in. 0 if not in property.
-    bool	currentPropertyRV	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x268, 0x164; // OwnedByDefault flag - assume for RV only? 0x140, 0x14 for property name
-    bool	sleeping	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x258;  // Player sleeping
+    // Player                   0x0377DA68, 0xB8, 0x18
+    // Find via inventory item quantity
+    bool	introComplete	    : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x280;  // Tracks if in prologue
+    ulong	currentVehicle	    : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x208;  // Pointer towards vehicle player is currently in. 0 if not in a vehicle.
+    ulong	currentProperty	    : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x268;  // Pointer towards property player is currently in. 0 if not in property.
+    bool	currentPropertyRV	: "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x268, 0x164; // OwnedByDefault flag - assume for RV only? 0x140, 0x14 for property name
+    bool	sleeping	        : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x258;  // Player sleeping
 
-	ulong 	inventory1	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x20, 0x10, 0x18, 0x14; // I hate this, find better way.
-	ulong  	inventory1container	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x20, 0x10, 0x40, 0x14;
-	ulong  	inventory2	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x28, 0x10, 0x18, 0x14;
-	ulong  	inventory2container	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x28, 0x10, 0x40, 0x14;
-    ulong  	inventory3	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x30, 0x10, 0x18, 0x14;
-	ulong  	inventory3container	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x30, 0x10, 0x40, 0x14;
-    ulong  	inventory4	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x38, 0x10, 0x18, 0x14;
-	ulong  	inventory4container	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x38, 0x10, 0x40, 0x14;
-    ulong  	inventory5	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x40, 0x10, 0x18, 0x14;
-	ulong  	inventory5container	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x40, 0x10, 0x40, 0x14;
-    ulong  	inventory6	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x48, 0x10, 0x18, 0x14;
-	ulong  	inventory6container	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x48, 0x10, 0x40, 0x14;
-    ulong  	inventory7	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x50, 0x10, 0x18, 0x14;
-	ulong  	inventory7container	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x50, 0x10, 0x40, 0x14;
-    ulong  	inventory8	        : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x58, 0x10, 0x18, 0x14;
-	ulong  	inventory8container	: "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x58, 0x10, 0x40, 0x14;
+	ulong 	inventory1	        : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x20, 0x10, 0x18, 0x14; // I hate this, find better way.
+	ulong  	inventory1container	: "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x20, 0x10, 0x40, 0x14;
+	ulong  	inventory2	        : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x28, 0x10, 0x18, 0x14;
+	ulong  	inventory2container	: "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x28, 0x10, 0x40, 0x14;
+    ulong  	inventory3	        : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x30, 0x10, 0x18, 0x14;
+	ulong  	inventory3container	: "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x30, 0x10, 0x40, 0x14;
+    ulong  	inventory4	        : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x38, 0x10, 0x18, 0x14;
+	ulong  	inventory4container	: "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x38, 0x10, 0x40, 0x14;
+    ulong  	inventory5	        : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x40, 0x10, 0x18, 0x14;
+	ulong  	inventory5container	: "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x40, 0x10, 0x40, 0x14;
+    ulong  	inventory6	        : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x48, 0x10, 0x18, 0x14;
+	ulong  	inventory6container	: "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x48, 0x10, 0x40, 0x14;
+    ulong  	inventory7	        : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x50, 0x10, 0x18, 0x14;
+	ulong  	inventory7container	: "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x50, 0x10, 0x40, 0x14;
+    ulong  	inventory8	        : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x58, 0x10, 0x18, 0x14;
+	ulong  	inventory8container	: "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x58, 0x10, 0x40, 0x14;
 
-	float	money	            : "GameAssembly.dll", 0x0376E808, 0xB8, 0x18, 0x2A0, 0x60, 0x10, 0x38; // Paper money
+	float	money	            : "GameAssembly.dll", 0x0377DA68, 0xB8, 0x18, 0x2A0, 0x60, 0x10, 0x38; // Paper money
 
-    // TimeManager              0x0389ECD8, 0XB8, 0X0
-    float   IGT                 : "GameAssembly.dll", 0x0389ECD8, 0xB8, 0x0, 0x140; // In game time
+    // TimeManager              0x038AEC90, 0XB8, 0X0
+    // Find via game clock (as shown on phone), which is an int representing 24 hour time
+    float   IGT                 : "GameAssembly.dll", 0x038AEC90, 0xB8, 0x0, 0x140; // In game time
 
-    // PlayerCamera             0x0376E8D8, 0xB8, 0x10
-    bool    cameraControl       : "GameAssembly.dll", 0x0376E8D8, 0xB8, 0x10, 0xB8; // Whether player can control camera
+    // PlayerCamera             0x0377DB38, 0xB8, 0x10
+    // Find via cameraControl bool - 1 = can look, 0 = camera frozen
+    bool    cameraControl       : "GameAssembly.dll", 0x0377DB38, 0xB8, 0x10, 0xB8; // Whether player can control camera
     
-    // MoneyManager             0x0389E3B8, 0xB8, 0x0, 0x128;
-    float   moneyonline         : "GameAssembly.dll", 0x0389E3B8, 0xB8, 0x0, 0x128; // Online balance
+    // MoneyManager             0x038AE360, 0xB8, 0x0, 0x128;
+    float   moneyonline         : "GameAssembly.dll", 0x038AE360, 0xB8, 0x0, 0x128; // Online balance
 }
 
 startup
@@ -68,13 +71,16 @@ startup
 
 start
 {
+    // introComplete is trigger for main game
+    // cameraControl is trigger for prologue
 	if ( vars.shouldStart && (current.introComplete == true || current.cameraControl == true) )
 	{
         vars.shouldStart = false;
 		return true;
 	}
 
-    if (current.IGT > 10 && current.IGT < 11) // These times should be before both modes give control to the player
+    // make sure triger events happening before 10s IGT don't start timer. Prevents main game from starting early.
+    if (current.IGT > 10 && current.IGT < 11)
 	{
 		vars.shouldStart = true;
 	}
@@ -91,10 +97,10 @@ onReset
 	vars.shouldStart = false;
 }
 
-// Not currently used, as runs are timed using real time, but might as well add it
+// Not currently used, as runs are timed using real time. Remove // and set comparison to game time if needed
 gameTime
 {
-    return TimeSpan.FromSeconds(current.IGT);
+    // return TimeSpan.FromSeconds(current.IGT);
 }
 
 split
