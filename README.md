@@ -7,11 +7,11 @@ Automatic timer starting works for both main game and prologue. There were some 
 There are also several autosplits defined, which are all off by default.
 
 ## Installing
-Download the *ScheduleI.asl* file from the releases section, and place it somewhere convinient.
+Download the latest zip file from the releases section, and extract the *scheduleI.asl* to a convinient location.
 
 In livesplit, open the layout editor, and add a new element under the menu **Control > Scriptable Auto Splitter**.
 
-Double click on the *Scriptable Auto Splitter* element in the selection box to open its settings. Next to *Script Path*, click the browse button, and select the *ScheduleI.asl* file.
+Double click on the *Scriptable Auto Splitter* element in the selection box to open its settings. Next to *Script Path*, click the browse button, and select the *scheduleI.asl* file.
 
 A box labelled *Advanced* should appear. This contains options for all autosplits, which are off by default. Tick which options you want to automatically split on.
 
