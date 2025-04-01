@@ -36,6 +36,9 @@ Make sure your **Compare Against** setting is set to **Real Time** not Game Time
     ```
     vars.moneySplitValue = 2079;
     ```
+## Known Issues
+- Speedgrow split only works for the first two inventory slots. I don't think this split is relevant for any current strats, so it will either be fixed or removed.
+
 ## Future Plans
 - Recode everything. Once I have a general idea of everything, I want to remake it from the ground up. Still in the get it working phase for now.
 - Possibly implement aobscanning to help protect against updates. Each patch currently requires four addresses to be found, and that will e xpand as more autosplit options are added.
