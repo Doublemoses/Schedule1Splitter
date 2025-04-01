@@ -34,4 +34,8 @@ A box labelled *Advanced* should appear. This contains options for all autosplit
     ```
     vars.moneySplitValue = 2079;
     ```
+## Future Plans
+- Recode everything. Once I have a general idea of everything, I want to remake it from the ground up. Still in the get it working phase for now.
+- Possibly implement aobscanning to help protect against updates. Each patch currently requires four addresses to be found, and that will e xpand as more autosplit options are added.
+- Add more splits. You can request a split from me, and I will add it if I know how.
 
