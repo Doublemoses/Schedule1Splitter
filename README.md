@@ -19,12 +19,12 @@ Make sure your **Compare Against** setting is set to **Real Time** not Game Time
 
 ## Current autosplits
 - Split on bed during prologue
-  - This is the final split for any prologue run.
+  - This is the final split for any prologue run. This is safe to leave on, as this cannot be triggered at any other time.
 - Split of first cash received
-  - Splits as soon as the player has any cash money. Usually occurs on first sale, or picking up money from dropboxes. Can be used to end weed% run.
+  - Splits as soon as the player has any cash money. Usually occurs on first sale, or picking up money from dropboxes. Used to end weed% run.
 - Split when making money after holding meth
-  - Once the player has meth in their inventory, the splitter will record the current money value, and will split once the player receives money. Can be used to end meth% run.
-- Split on receiving speed grow
+  - Once the player has meth in their inventory, the splitter will record the current money value, and will split once the player's money increases. Used to end meth% run.
+- Split on receiving speed grow (bugged, depreciated)
 - Split on receiving og kush baggie
 - Split on first entering vehicle
 - Split on receiving pseudo during prologue
