@@ -58,14 +58,26 @@ startup
     settings.Add("property",    false, "Split on first time stepping into any owned property that isn't the RV");
     settings.Add("badpseudo",   false, "Split on first time receiving low-quality pseudo");
     settings.Add("chemlab",     false, "Split on first time buying chemistry station");
-    settings.Add("totalmoney",  false, "Split when combined money reaches a certain value (default: 2079 for meth%)");
+    settings.Add("totalmoney",  false, "Split when combined money reaches a certain value (values set in 'Player set vars' section of asl file)");
     
 
     // ===============
     // Player set vars
     // ===============
 
-    vars.moneySplitValue = 2079; // the value that combined offline and online balance should be above to cause a split
+    //vars.moneySplitValue = 2079; // the value that combined offline and online balance should be above to cause a split
+
+    // will split once your combined balance hits each threshold
+    // put as many numbers in between the {} as you need, separated by commas
+    //
+    // example:
+    //
+    // vars.moneySplits = new float[] {1999, 19999, 49999, 99999};
+    //
+    // this line would split once you get at least 2000, then 20000, then 50000, then 100000
+    
+    //vars.moneySplits = new float[] {999999, 9999999, 99999999};
+    vars.moneySplits = new float[] {1999, 19999, 49999, 99999};
 
 }
 
@@ -228,10 +240,25 @@ split
         return true;
     }
 
-    if (((current.money + current.moneyonline) > vars.moneySplitValue) && !vars.completedSplits.Contains("totalmoney") && settings["totalmoney"])
+    /*if (((current.money + current.moneyonline) > vars.moneySplitValue) && !vars.completedSplits.Contains("totalmoney") && settings["totalmoney"])
     {
         vars.completedSplits.Add("totalmoney");
         return true;
+    }*/
+
+    if (settings["totalmoney"])
+    {
+        for (int i = 0; i < vars.moneySplits.Length; i++)
+        {
+
+            if (((current.money + current.moneyonline) > vars.moneySplits[i]) && !vars.completedSplits.Contains("moneysplit" + i))
+            {
+                vars.completedSplits.Add("moneysplit" + i);
+                return true;
+            }
+
+        }
     }
+
 }
 
