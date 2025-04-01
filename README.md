@@ -7,22 +7,24 @@ Automatic timer starting works for both main game and prologue. There were some 
 There are also several autosplits defined, which are all off by default.
 
 ## Installing
-Download the *ScheduleI.asl* file from the releases section, and place it somewhere convinient.
+Download the latest zip file from the releases section, and extract the *scheduleI.asl* to a convinient location.
 
 In livesplit, open the layout editor, and add a new element under the menu **Control > Scriptable Auto Splitter**.
 
-Double click on the *Scriptable Auto Splitter* element in the selection box to open its settings. Next to *Script Path*, click the browse button, and select the *ScheduleI.asl* file.
+Double click on the *Scriptable Auto Splitter* element in the selection box to open its settings. Next to *Script Path*, click the browse button, and select the *scheduleI.asl* file.
 
 A box labelled *Advanced* should appear. This contains options for all autosplits, which are off by default. Tick which options you want to automatically split on.
 
+Make sure your **Compare Against** setting is set to **Real Time** not Game Time.
+
 ## Current autosplits
 - Split on bed during prologue
-  - This is the final split for any prologue run.
+  - This is the final split for any prologue run. This is safe to leave on, as this cannot be triggered at any other time.
 - Split of first cash received
-  - Splits as soon as the player has any cash money. Usually occurs on first sale, or picking up money from dropboxes. Can be used to end weed% run.
+  - Splits as soon as the player has any cash money. Usually occurs on first sale, or picking up money from dropboxes. Used to end weed% run.
 - Split when making money after holding meth
-  - Once the player has meth in their inventory, the splitter will record the current money value, and will split once the player receives money. Can be used to end meth% run.
-- Split on receiving speed grow
+  - Once the player has meth in their inventory, the splitter will record the current money value, and will split once the player's money increases. Used to end meth% run.
+- Split on receiving speed grow (bugged, depreciated)
 - Split on receiving og kush baggie
 - Split on first entering vehicle
 - Split on receiving pseudo during prologue
@@ -34,4 +36,11 @@ A box labelled *Advanced* should appear. This contains options for all autosplit
     ```
     vars.moneySplitValue = 2079;
     ```
+## Known Issues
+- Speedgrow split only works for the first two inventory slots. I don't think this split is relevant for any current strats, so it will either be fixed or removed.
+
+## Future Plans
+- Recode everything. Once I have a general idea of everything, I want to remake it from the ground up. Still in the get it working phase for now.
+- Possibly implement aobscanning to help protect against updates. Each patch currently requires four addresses to be found, and that will e xpand as more autosplit options are added.
+- Add more splits. You can request a split from me, and I will add it if I know how.
 
