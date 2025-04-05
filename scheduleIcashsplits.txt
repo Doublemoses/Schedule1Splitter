@@ -1,0 +1,6 @@
+// Place this file in your livesplit directory
+// Each line should contain one number, and will be split when your combine cash and online total exceed that number
+// Can also be done by editing the main file instead if you prefer
+// Lines beginning with // are ignored if you wish to make comments
+2079
+999999
