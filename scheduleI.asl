@@ -3,7 +3,7 @@ state("Schedule I")
     ulong   playerBase          : "GameAssembly.dll", 0x0377EAD8, 0xB8, 0x18;               // Player
     ulong   levelManagerBase    : "GameAssembly.dll", 0x038AF158, 0xB8, 0x0;                // LevelManager
 
-    ulong   inventoryBase       : "GameAssembly.dll", 0x0377EAD8, 0xB8, 0x18, 0x2A0;  // Player -> Inventory -> Item[0]
+    ulong   inventoryBase       : "GameAssembly.dll", 0x0377EAD8, 0xB8, 0x18, 0x2A0;        // Player -> Inventory -> Item[0]
     ulong   dailySalesBase      : "GameAssembly.dll", 0x03776A58, 0xB8, 0x10, 0x170;        // DailySummary -> itemsSoldByPlayer - Dictionary containing all products sold to show on end of day screen
     bool    hasCameraControl    : "GameAssembly.dll", 0x0377EBA8, 0xB8, 0x10, 0xB8;         // PlayerCamera -> hasControl - Whether player can control camera
     float   gameTime            : "GameAssembly.dll", 0x038AFE18, 0xB8, 0x0, 0x140;         // TimeManager -> gameTime
@@ -154,8 +154,6 @@ start
 onReset
 {
     vars.dailySalesCount = 0;
-
-    // Reset splitter logic variables
 	vars.completedSplits.Clear();
 	vars.shouldStart = false;
 }
@@ -305,12 +303,6 @@ split
     // 0 = not active, 1 = active, 2 = complete
     if (settings["quests"])
     {
-        //print( (memory.ReadValue<ulong>((IntPtr)current.questManagerBase)).ToString("X12") );
-        //print (                          (memory.ReadValue<ulong>((IntPtr)current.questManagerBase + 0x120                     ) ).ToString("X12") );
-       // print ( (current.questManagerBase + 0x120).ToString("X12" ));
-        //ulong offset = memory.ReadValue<ulong>((IntPtr)current.questManagerBase + 0x120);
-        
-
         for (int i = 0; i < 19; i++)
         {
             if (settings["quest" + i] && !vars.completedSplits.Contains("quest" + i))
