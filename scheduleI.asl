@@ -13,8 +13,6 @@ state("Schedule I")
 
     ulong   propertyList        : "GameAssembly.dll", 0x037AB990, 0xB8, 0x20, 0x10;         // List containing all properties
     ulong   businessList        : "GameAssembly.dll", 0x0377F228, 0xB8, 0x30, 0x10;         // List containing all businesses
-
-    
 }
 
 startup
@@ -84,6 +82,7 @@ startup
     // Player rank
     settings.Add("rank",                false, "Split when reaching a specific rank");
     settings.Add("rank1",               false, "Hoodlum", "rank");
+    settings.Add("rank1tier5",          false, "Hoodlum V (Will not split on hoodlum I if this is ticked)", "rank1");
     settings.Add("rank2",               false, "Peddler", "rank");
     settings.Add("rank3",               false, "Hustler", "rank");
     settings.Add("rank4",               false, "Bagman", "rank");
@@ -149,10 +148,32 @@ start
     {
         vars.shouldStart = false;
     }
+    /*if (memory.ReadValue<bool>((IntPtr)current.loadingScreenBase + 0x28))
+    {
+        if (memory.ReadValue<bool>((IntPtr)current.loadingScreenBase + 0xB0))
+        {
+            vars.loadingState = 1; // tutorial loading screen
+        }
+        else
+        {
+            vars.loadingState = 2; // main game loading screen
+        }
+    }
+
+    if (vars.loadingState == 2 && !memory.ReadValue<bool>((IntPtr)current.loadingScreenBase + 0x28)) 
+    {
+        vars.loadingState = 0;
+        return true;
+    }*/
+
 }
 
 onReset
 {
+    foreach (string splitName in vars.completedSplits) // debugging
+    {
+        print(splitName);
+    }
     vars.dailySalesCount = 0;
 	vars.completedSplits.Clear();
 	vars.shouldStart = false;
@@ -252,12 +273,12 @@ split
             offset = memory.ReadValue<ulong>((IntPtr)(offset + 0x10 + (vars.dailySalesCount * 0x18)));
             String compare = memory.ReadString((IntPtr)offset + 0x14, 32);
 
-            if (compare == "ogkush")
+            if (compare == "ogkush" && settings["dealweed"])
             {
                 vars.completedSplits.Add("dealweed");
                 return true;
             }
-            else if (compare == "meth")
+            else if (compare == "meth" && settings["dealmeth"])
             {
                 vars.completedSplits.Add("dealmeth");
                 return true;
@@ -359,8 +380,22 @@ split
         {
             if (settings["rank" + rank] && !vars.completedSplits.Contains("rank" + rank))
             {
-                vars.completedSplits.Add("rank" + rank);
-                return true;
+
+                if (rank == 1 && settings["rank1tier5"]) // special case for splitting on Hoodlum V
+                {
+                    int tier = memory.ReadValue<int>((IntPtr)current.levelManagerBase + 0x128);
+                    if (tier == 5)
+                    {
+                        vars.completedSplits.Add("rank1");
+                        vars.completedSplits.Add("rank1tier5");
+                        return true;
+                    }
+                }
+                else
+                {
+                    vars.completedSplits.Add("rank" + rank);
+                    return true;
+                }
             }
         }
     }
