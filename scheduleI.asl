@@ -1,18 +1,18 @@
 state("Schedule I")
 {
-    ulong   playerBase          : "GameAssembly.dll", 0x0377EAD8, 0xB8, 0x18;               // Player
-    ulong   levelManagerBase    : "GameAssembly.dll", 0x038AF158, 0xB8, 0x0;                // LevelManager
+    ulong   playerBase          : "GameAssembly.dll", 0x037991C0, 0xB8, 0x18;               // Player
+    ulong   levelManagerBase    : "GameAssembly.dll", 0x038CEAA0, 0xB8, 0x0;                // LevelManager
 
-    ulong   inventoryBase       : "GameAssembly.dll", 0x0377EAD8, 0xB8, 0x18, 0x2A0;        // Player -> Inventory -> Item[0]
-    ulong   dailySalesBase      : "GameAssembly.dll", 0x03776A58, 0xB8, 0x10, 0x170;        // DailySummary -> itemsSoldByPlayer - Dictionary containing all products sold to show on end of day screen
-    bool    hasCameraControl    : "GameAssembly.dll", 0x0377EBA8, 0xB8, 0x10, 0xB8;         // PlayerCamera -> hasControl - Whether player can control camera
-    float   gameTime            : "GameAssembly.dll", 0x038AFE18, 0xB8, 0x0, 0x140;         // TimeManager -> gameTime
-    float   moneyOnline         : "GameAssembly.dll", 0x038AF4F8, 0xB8, 0x0, 0x128;         // MoneyManager -> onlineBalance
-    float   moneyCash           : "GameAssembly.dll", 0x0377EAD8, 0xB8, 0x18, 0x2A0, 0x60, 0x10, 0x38;  // Player -> Inventory -> Slot 9 -> Cash
-    ulong   mainQuestList       : "GameAssembly.dll", 0x03832438, 0xB8, 0x20, 0x120;        // QuestManager -> DefaultQuests - List of all standard main game quests
+    ulong   inventoryBase       : "GameAssembly.dll", 0x037991C0, 0xB8, 0x18, 0x2A0;        // Player -> Inventory -> Item[0]
+    ulong   dailySalesBase      : "GameAssembly.dll", 0x037910F0, 0xB8, 0x10, 0x170;        // DailySummary -> itemsSoldByPlayer - Dictionary containing all products sold to show on end of day screen
+    bool    hasCameraControl    : "GameAssembly.dll", 0x03799290, 0xB8, 0x10, 0xC0;         // PlayerCamera -> hasControl - Whether player can control camera
+    float   gameTime            : "GameAssembly.dll", 0x038CF930, 0xB8, 0x0, 0x140;         // TimeManager -> gameTime
+    float   moneyOnline         : "GameAssembly.dll", 0x038CEE40, 0xB8, 0x0, 0x128;         // MoneyManager -> onlineBalance
+    float   moneyCash           : "GameAssembly.dll", 0x037991C0, 0xB8, 0x18, 0x2A0, 0x60, 0x10, 0x38;  // Player -> Inventory -> Slot 9 -> Cash
+    ulong   mainQuestList       : "GameAssembly.dll", 0x038CF590, 0xB8, 0x20, 0x120;        // QuestManager -> DefaultQuests - List of all standard main game quests
 
-    ulong   propertyList        : "GameAssembly.dll", 0x037AB990, 0xB8, 0x20, 0x10;         // List containing all properties
-    ulong   businessList        : "GameAssembly.dll", 0x0377F228, 0xB8, 0x30, 0x10;         // List containing all businesses
+    ulong   propertyList        : "GameAssembly.dll", 0x037C6A40, 0xB8, 0x20, 0x10;         // List containing all properties
+    ulong   businessList        : "GameAssembly.dll", 0x03799910, 0xB8, 0x30, 0x10;         // List containing all businesses
 }
 
 startup
